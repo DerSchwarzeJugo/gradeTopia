@@ -1,0 +1,56 @@
+body {
+	background: linear-gradient(to bottom right, #000066 14%, #9900ff 77%);
+	color: floralwhite;
+	min-height: 100vh;
+	max-width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+	font-family: "Segoe UI", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Georgia, serif;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+.general {
+	display: none;
+}
+
+.general.active {
+	display: block;
+}
+
+form {
+	max-width: 800px;
+	margin: auto;
+}
+
+form input, form select {
+	margin-bottom: 20px;
+}
+
+form label {
+	display: none;
+}
+
+#mainTitle {
+	margin: 50px 0;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#addClassIcon {
+	display: inline-block;
+	position: absolute;
+    left: 20%;
+	font-weight: 700;
+	cursor: pointer;
+	font-size: 30px;
+}
