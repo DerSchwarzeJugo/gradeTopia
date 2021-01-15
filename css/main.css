@@ -54,3 +54,21 @@ form label {
 	cursor: pointer;
 	font-size: 30px;
 }
+
+#mainCanvas {
+	width: 100%;
+	height: 400px;
+	max-width: 800px;
+	background-color: #ffffff52;
+}
+
+.classItem {
+	width: 25%;
+	display: inline-block;
+	margin: 16px 8px;
+	cursor: pointer;
+}
+
+.classItem:hover {
+	background-color: #ffffff5c;
+}
