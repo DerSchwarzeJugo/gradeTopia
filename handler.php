@@ -116,12 +116,16 @@ if (!$json) {
 } else {
 	try {
 		$data = json_decode($json);
-		if ($data) {
+		if (property_exists($data, 'addClass')) {
 			$name = htmlspecialchars($data->addClass);
 			$success = addClassToJson($name);
 			if ($success) {
 				echo json_encode($success);
 			}
+		} else if (property_exists($data, 'getInfo')) {
+			$id = htmlspecialchars(explode('ci-', $data->getInfo)[1]);
+			$currentData = getJson();
+			echo json_encode($currentData[$id]);
 		}
 		
 	} catch (Exception $e) {

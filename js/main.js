@@ -20,6 +20,61 @@ function outputClasses(data) {
 		newData += '<div class="classItem w3-card-4" id="ci-' + i + '"><div class="w3-container w3-center"><p>' + el.name + '</p></div></div>'
 	})
 	document.getElementById('classList').innerHTML = newData
+	registerEventListeners();
+}
+
+function registerEventListeners() {
+	let list = document.querySelectorAll('.classItem')
+	list.forEach((el, i) => {
+		document.querySelector('#' + el.id).addEventListener('click', (e) => {
+			// listener for dynamic on click
+			getClassInfo(el)
+		})
+	})
+}
+
+function getClassInfo(el) {
+	let data = []
+	data['getInfo'] = el.id
+	let xhttp = new XMLHttpRequest()
+	xhttp.onreadystatechange = (e) => {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			displayCanvasData(xhttp.response)
+		}
+		
+	}
+	xhttp.open('POST', 'handler.php', true)
+	xhttp.setRequestHeader("Content-type", "application/json")
+	dataString = JSON.stringify({"getInfo": data.getInfo})
+	xhttp.send(dataString)
+}
+
+function displayCanvasData(jsonData) {
+	let data = JSON.parse(jsonData)
+	console.log(data)
+	let cv = document.getElementById('mainCanvas')
+	if (cv) {
+		let ctx = cv.getContext('2d')
+		ctx.clearRect(0, 0, cv.width, cv.height)
+		drawBaseCanvas()
+		ctx.font = '25px Georgia'
+		ctx.fillText(data.name, 60, 100)
+		if (data.average != undefined) {
+			ctx.fillText('Ø ' + data.average, 60, 140)
+		} else {
+			ctx.fillText('Noch keine Note!', 60, 140)
+		}
+
+		if (data.grades != undefined) {
+			ctx.font = '15px Segoe UI'
+			let increaser = 0 
+			data.grades.forEach((el, i) => {
+				let grade = el.grade + ' (' + el.emphasis + ' | ' + el.date + ')'
+				ctx.fillText(grade, 60, 180 + increaser)
+				increaser += 20
+			})
+		}
+	}
 }
 
 function updateFormSelect(data) {
@@ -68,6 +123,12 @@ function drawBaseCanvas() {
 		ctx.stroke()
 		ctx.moveTo(20, cv.offsetHeight - 40)
 		ctx.lineTo(cv.offsetWidth - 20, cv.offsetHeight - 40)
+		ctx.stroke()
+		ctx.moveTo(cv.offsetWidth - 40, cv.offsetHeight - 20)
+		ctx.lineTo(cv.offsetWidth - 40, 20)
+		ctx.stroke()
+		ctx.moveTo(cv.offsetWidth - 20, 40)
+		ctx.lineTo(20, 40)
 		ctx.stroke()
 	}
 }
@@ -127,5 +188,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		document.getElementById('addClassIcon').classList.add('hidden')
 		document.getElementById('gradesForm').classList.add('hidden')
 	})
+
 })
 
