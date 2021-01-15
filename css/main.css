@@ -90,3 +90,25 @@ form label {
 .classItem:hover {
 	background-color: #ffffff5c;
 }
+
+img {
+	max-width: 100%;
+}
+
+.infoRow {
+	margin: 50px 0;
+}
+
+@media (min-width:601px) {
+	.infoRow {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+@media (max-width:1200px) {
+	.infoRow h3 {
+		font-size: 15px;
+	}
+}
