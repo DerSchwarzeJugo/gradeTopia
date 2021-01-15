@@ -46,13 +46,31 @@ form label {
 	display: none !important;
 }
 
-#addClassIcon {
+#addClassIcon, #delBtn {
 	display: inline-block;
 	position: absolute;
     left: 20%;
 	font-weight: 700;
 	cursor: pointer;
 	font-size: 30px;
+}
+
+@media(max-width: 1200px) {
+	#delBtn {
+		left: 12%;	
+	}
+}
+@media(max-width: 767px) {
+	#addClassIcon, #delBtn {
+		left: 10%;
+	}
+	#canvasTitle {
+		text-align: right;
+	}
+	#delBtn {
+		transform: scale(0.4);
+		left: -30px;	
+	}
 }
 
 #mainCanvas {

@@ -32,9 +32,29 @@
                 "grade": "4",
                 "emphasis": "0.2",
                 "date": "2021-01-03"
+            },
+            {
+                "grade": "3",
+                "emphasis": "1",
+                "date": "2021-01-06"
+            },
+            {
+                "grade": "3",
+                "emphasis": "1",
+                "date": "2021-01-06"
+            },
+            {
+                "grade": "3",
+                "emphasis": "1",
+                "date": "2021-01-06"
+            },
+            {
+                "grade": "3",
+                "emphasis": "1",
+                "date": "2021-01-06"
             }
         ],
-        "average": "Die Summer der Noten ergibt mehr als 100%!"
+        "average": "Noten > 100%!"
     },
     {
         "name": "cccc",
@@ -62,5 +82,8 @@
     },
     {
         "name": "hhasew"
+    },
+    {
+        "name": "hhasas"
     }
 ]

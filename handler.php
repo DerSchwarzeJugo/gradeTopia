@@ -49,7 +49,7 @@ function addGradeToClass($class, $grade, $emphasis, $date) {
 }
 
 function createHTML($data, $class, $grade, $emphasis, $date) {
-	$html = '<!DOCTYPE html><html><head><title>gradeTopia</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><link rel="stylesheet" href="css/main.css"></head><body><header class="w3-white"><nav class="w3-row"><a href="index.html#form" class="w3-bar-item w3-button w3-col s12">Zurück</a></nav></header><section class="w3-container"><h1 id="mainTitle">gradeTopia</h1></section><main><section class="w3-contianer"><h2>Resultate</h2>';
+	$html = '<!DOCTYPE html><html><head><title>gradeTopia</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><link rel="stylesheet" href="css/main.css"></head><body><header class="w3-white"><nav class="w3-row"><a href="index.html#form" class="w3-bar-item w3-button w3-col s12">Zurück</a></nav></header><section class="w3-container"><h1 id="mainTitle">gradeTopia</h1></section><main><section class="w3-container"><h2>Resultate</h2>';
 	$html .= '<h4>Du hast die Note <b>' . $grade . '</b> mit Gewichtung von <b>' . $emphasis . '</b> im Fach <b>' . $data[$class]['name'] . '</b> am <b>' . $date . '</b> erreicht.</h4>';
 	if (isset($_COOKIE['gradeSuccess'])) {
 		$html .= 'Toll, du hast schon mindestens eine Note hinzugefügt. Besuche den Canvas um die Magie zu betrachten!';
@@ -84,7 +84,7 @@ function doTheMath($data, $class) {
 					$totalPercentage += $value['emphasis'];
 				}
 				if ($totalPercentage > 1) {
-					$data[$class]['average'] = 'Die Summer der Noten ergibt mehr als 100%!';
+					$data[$class]['average'] = 'Noten > 100%!';
 				} else if ($totalPercentage == 1) {
 					$result = 0;
 					foreach($grades as $key => $value) {
@@ -116,18 +116,20 @@ if (!$json) {
 } else {
 	try {
 		$data = json_decode($json);
-		if (property_exists($data, 'addClass')) {
-			$name = htmlspecialchars($data->addClass);
-			$success = addClassToJson($name);
-			if ($success) {
-				echo json_encode($success);
+		if ($data) {
+			if (property_exists($data, 'addClass')) {
+				$name = htmlspecialchars($data->addClass);
+				$success = addClassToJson($name);
+				if ($success) {
+					echo json_encode($success);
+				}
+			} else if (property_exists($data, 'getInfo')) {
+				$id = htmlspecialchars(explode('ci-', $data->getInfo)[1]);
+				$currentData = getJson();
+				echo json_encode($currentData[$id]);
 			}
-		} else if (property_exists($data, 'getInfo')) {
-			$id = htmlspecialchars(explode('ci-', $data->getInfo)[1]);
-			$currentData = getJson();
-			echo json_encode($currentData[$id]);
+			
 		}
-		
 	} catch (Exception $e) {
 		echo json_encode($e);
 	}

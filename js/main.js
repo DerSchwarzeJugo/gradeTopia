@@ -51,13 +51,15 @@ function getClassInfo(el) {
 
 function displayCanvasData(jsonData) {
 	let data = JSON.parse(jsonData)
-	console.log(data)
 	let cv = document.getElementById('mainCanvas')
 	if (cv) {
 		let ctx = cv.getContext('2d')
-		ctx.clearRect(0, 0, cv.width, cv.height)
 		drawBaseCanvas()
-		ctx.font = '25px Georgia'
+		if (window.innerWidth < 768 ) {
+			ctx.font = '15px Georgia'
+		} else {
+			ctx.font = '25px Georgia'
+		}
 		ctx.fillText(data.name, 60, 100)
 		if (data.average != undefined) {
 			ctx.fillText('Ø ' + data.average, 60, 140)
@@ -115,9 +117,11 @@ function getClassList() {
 
 function drawBaseCanvas() {
 	let cv = document.getElementById('mainCanvas')
+	cv.height = cv.scrollHeight
+	cv.width = cv.scrollWidth
 	if (cv) {
 		let ctx = cv.getContext('2d')
-		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		ctx.clearRect(0, 0, cv.width, cv.height)
 		ctx.moveTo(40, 20)
 		ctx.lineTo(40, cv.offsetHeight - 20)
 		ctx.stroke()
@@ -189,5 +193,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		document.getElementById('gradesForm').classList.add('hidden')
 	})
 
+})
+
+window.addEventListener('resize', (e) => {
+	drawBaseCanvas()
 })
 
