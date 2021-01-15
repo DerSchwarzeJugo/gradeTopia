@@ -7,6 +7,7 @@ function changeNav(e) {
 
 function parseClassData(response) {
 	document.getElementById('classForm').classList.add('hidden')	
+	document.getElementById('addGradeIcon').classList.add('hidden')	
 	document.getElementById('gradesForm').classList.remove('hidden')
 	document.getElementById('addClassIcon').classList.remove('hidden')
 	document.querySelector('nav a:last-child').click()
@@ -205,8 +206,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	
 	document.getElementById('addClassIcon').addEventListener('click', (e) => {
 		document.getElementById('classForm').classList.remove('hidden')
+		document.getElementById('addGradeIcon').classList.remove('hidden')
 		document.getElementById('addClassIcon').classList.add('hidden')
 		document.getElementById('gradesForm').classList.add('hidden')
+	})
+	
+	document.getElementById('addGradeIcon').addEventListener('click', (e) => {
+		document.getElementById('classForm').classList.add('hidden')
+		document.getElementById('addGradeIcon').classList.add('hidden')
+		document.getElementById('addClassIcon').classList.remove('hidden')
+		document.getElementById('gradesForm').classList.remove('hidden')
 	})
 
 	document.getElementById('delBtn').addEventListener('click', (e) => {

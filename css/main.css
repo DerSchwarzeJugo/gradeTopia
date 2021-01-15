@@ -46,7 +46,7 @@ form label {
 	display: none !important;
 }
 
-#addClassIcon, #delBtn {
+#addClassIcon, #addGradeIcon, #delBtn {
 	display: inline-block;
 	position: absolute;
     left: 20%;

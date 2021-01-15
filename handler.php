@@ -149,13 +149,7 @@ if (isset($_POST['class']) && is_numeric($_POST['class']) && isset($_POST['grade
 	if ($success) {
 		$html = createHTML($success, $class, $grade, $emphasis, $date);
 		echo $html;
-		// echo $success;
 	}
 } 
-// else {
-// 	$class = htmlspecialchars($_POST['class']);
-// 	echo is_numeric($class);
-
-// }
 
 ?>
