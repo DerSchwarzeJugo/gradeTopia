@@ -77,8 +77,9 @@ function formValidation() {
 	let gradeVal = document.getElementById('grade').value
 	let classVal = document.getElementById('class').value
 	let dateVal = document.getElementById('date').value
+	let emphasisVal = document.getElementById('emphasis').value
 	let dateObj = new Date(Date.parse(dateVal))
-	if (gradeVal >= 1 && gradeVal <= 6 && typeof classVal == "string" && classVal != "" && !isNaN(dateObj.getTime())) {
+	if (gradeVal >= 1 && gradeVal <= 6 && emphasisVal >= 0.1 && emphasisVal <= 1 && typeof classVal == "string" && classVal != "" && !isNaN(dateObj.getTime())) {
 		return true
 	} else {
 		return false

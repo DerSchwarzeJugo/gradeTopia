@@ -3,6 +3,7 @@
     <head>
 		<title>gradeTopia</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="css/main.css">
 		<script src="js/main.js"></script>
@@ -29,11 +30,13 @@
 					<input class="w3-input w3-border" id="addClass" name="addClass" type="text" placeholder="Fach" required>
 					<input type="submit" class="w3-btn w3-blue" />
 				</form>
-				<div id="addClassIcon" title="Neues Fach hinzuf&uuml;gen">+</div>
+				<div id="addClassIcon" title="Neues Fach hinzufügen">+</div>
 				<form id="gradesForm" class="w3-container" action="handler.php" method="post">
 					<h2>Neue Note</h2>	
 					<label class="w3-text-blue" for="grade">Note</label>
 					<input class="w3-input w3-border" id="grade" name="grade" type="number" placeholder="Note" min="1" max="6" step="0.1">
+					<label class="w3-text-blue" for="emphasis">Gewichtung</label>
+					<input class="w3-input w3-border" id="emphasis" name="emphasis" type="number" placeholder="Gewichtung" min="0.1" max="1" step="0.1">
 					<label class="w3-text-blue" for="class">Fach</label>
 					<select class="w3-select w3-border" id="class" name="class" type="text">
 					</select>
