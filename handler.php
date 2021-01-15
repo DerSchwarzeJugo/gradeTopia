@@ -127,6 +127,9 @@ if (!$json) {
 				$id = htmlspecialchars(explode('ci-', $data->getInfo)[1]);
 				$currentData = getJson();
 				echo json_encode($currentData[$id]);
+			} else if (property_exists($data, 'deleteData')) {
+				$result = setJson([]);
+				echo json_encode($result);
 			}
 			
 		}

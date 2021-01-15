@@ -158,6 +158,22 @@ function openSpecificTab() {
 	}
 }
 
+function deleteData() {
+	let data = []
+	data['deleteData'] = 'true' 
+	let xhttp = new XMLHttpRequest()
+	xhttp.onreadystatechange = (e) => {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			console.log(xhttp.response)
+		}
+		
+	}
+	xhttp.open('POST', 'handler.php', true)
+	xhttp.setRequestHeader("Content-type", "application/json")
+	dataString = JSON.stringify({"deleteData": data.deleteData})
+	xhttp.send(dataString)
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
 	drawBaseCanvas()
 	openSpecificTab()
@@ -191,6 +207,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		document.getElementById('classForm').classList.remove('hidden')
 		document.getElementById('addClassIcon').classList.add('hidden')
 		document.getElementById('gradesForm').classList.add('hidden')
+	})
+
+	document.getElementById('delBtn').addEventListener('click', (e) => {
+		deleteData()
+		document.getElementById('classList').innerHTML = ''
+		document.getElementById('class').innerHTML = ''
+		drawBaseCanvas()
+		getClassList()
 	})
 
 })
